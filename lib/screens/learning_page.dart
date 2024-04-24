@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'theory_fact.dart';
 
 class LearningPage extends StatelessWidget {
   @override
@@ -15,6 +16,10 @@ class LearningPage extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => VideoPlayerApp()),
+                );
                 // Implement Theoretical functionality
               },
               child: Text('Theoretical'),
