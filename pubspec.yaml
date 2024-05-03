@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  confetti: ^0.6.0
+  collection: ^1.16.0
   video_player: ^2.8.6
   cupertino_icons: ^1.0.6
 
@@ -21,7 +23,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/videos/
+    - assets/videos/FactorialExpl.mp4
+    - assets/images/permutations.png
+    - assets/images/combinations.png
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

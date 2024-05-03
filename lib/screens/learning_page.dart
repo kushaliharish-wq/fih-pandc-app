@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'theory_fact.dart';
+import 'theory_fact_page.dart';
+import 'solved_ex_page.dart'; // Import the Solved Examples page
 
 class LearningPage extends StatelessWidget {
   @override
@@ -18,7 +19,7 @@ class LearningPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => VideoPlayerApp()),
+                  MaterialPageRoute(builder: (context) => VideoPlayerScreen()),
                 );
                 // Implement Theoretical functionality
               },
@@ -31,7 +32,11 @@ class LearningPage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                // Implement Solved Example functionality
+                // Navigate to the Solved Examples page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PermCombGamePage()),
+                );
               },
               child: Text('Solved Example'),
               style: ElevatedButton.styleFrom(
