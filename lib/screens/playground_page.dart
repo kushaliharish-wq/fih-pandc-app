@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'playground_comb.dart'; // Import the CombinationGamePage
 
 class Playground extends StatelessWidget {
   const Playground({Key? key}) : super(key: key);
@@ -66,7 +67,7 @@ class Playground extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => Scaffold(appBar: AppBar(), body: Container())),
+                    MaterialPageRoute(builder: (_) => CombinationGamePage()), // Navigate to CombinationGamePage
                   );
                 },
                 child: Padding(
