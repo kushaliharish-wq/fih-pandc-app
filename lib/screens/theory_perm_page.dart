@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'perm_game_page.dart'; // Import the game page
 
 class PermutationsPage extends StatefulWidget {
   @override
@@ -42,57 +41,50 @@ class _PermutationsPageState extends State<PermutationsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('What is Permutations?'),
+        title: Text('Permutations'),
         backgroundColor: Colors.blue,
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                "assets/images/image.jpg"), // Ensure you have this image in your assets
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Permutations',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             SizedBox(height: 20),
             Image.asset('assets/images/permutations.png'),
             SizedBox(height: 20),
             Text(
               'Permutations refer to the arrangement of items in all possible sequences. The number of permutations of n objects is n! (n factorial). Order matters in permutation!',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             SizedBox(height: 20),
             Text(
               'Example permutations of [1, 2, 3]:',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
             ),
             SizedBox(height: 10),
             Expanded(
               child: ListView.builder(
                 itemCount: permutations.length,
                 itemBuilder: (context, index) {
-                  return Text(permutations[index].toString());
+                  return Text(
+                    permutations[index].toString(),
+                    style: TextStyle(color: Colors.black),
+                  );
                 },
               ),
             ),
             SizedBox(height: 20),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigate to the permutation game page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PermutationGamePage()),
-                  );
-                },
-                child: Text('Next'),
-              ),
-            ),
           ],
         ),
       ),

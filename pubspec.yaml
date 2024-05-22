@@ -26,6 +26,7 @@ flutter:
     - assets/videos/FactorialExpl.mp4
     - assets/images/permutations.png
     - assets/images/combinations.png
+    - assets/images/image.jpg
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 

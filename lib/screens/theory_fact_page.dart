@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
-// Import your desired next page
-import 'theory_perm_page.dart'; // Adjust the import to match your actual file
-
 class VideoPlayerScreen extends StatefulWidget {
   const VideoPlayerScreen({Key? key}) : super(key: key);
 
@@ -18,7 +15,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
-    // Initialize the video player with the asset video
     _controller =
         VideoPlayerController.asset('assets/videos/FactorialExpl.mp4');
     _initializeVideoPlayerFuture = _controller.initialize();
@@ -33,8 +29,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('What are factorials?'),
@@ -43,81 +37,81 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         future: _initializeVideoPlayerFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return Stack(
-              children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Wrap(
-                        spacing: 8.0,
-                        runSpacing: 4.0,
-                        children: [
-                          Text(
-                            'Understanding factorials is crucial for calculating permutations and combinations.',
-                            style: TextStyle(
-                                fontFamily: 'Roboto',
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue),
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Understanding factorials is crucial for calculating permutations and combinations.',
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 1.0,
+                                color: Colors.black,
+                                offset: const Offset(1.0, 1.0),
+                              ),
+                            ],
                           ),
-                          Text(
-                            'Factorials represent the number of ways to arrange a set of items, which is fundamental in combinatorial problems.',
-                            style: TextStyle(fontSize: screenSize.width * 0.04),
-                          ),
-                          Text(
-                            'For example, the number of ways to arrange n items is n!, and the number of ways to choose r items from a set of n is nCr = n! / (r!(n-r)!).',
-                            style: TextStyle(fontSize: screenSize.width * 0.04),
-                          ),
-                          Text(
-                            'This mathematical foundation allows us to solve complex problems in probability, statistics, and beyond.',
-                            style: TextStyle(fontSize: screenSize.width * 0.04),
-                          ),
-                        ],
-                      ),
-                    ),
-                    AspectRatio(
-                      aspectRatio: _controller.value.aspectRatio,
-                      child: VideoPlayer(_controller),
-                    ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.center,
-                      child: FloatingActionButton(
-                        onPressed: () {
-                          setState(() {
-                            if (_controller.value.isPlaying) {
-                              _controller.pause();
-                            } else {
-                              _controller.play();
-                            }
-                          });
-                        },
-                        child: Icon(
-                          _controller.value.isPlaying
-                              ? Icons.pause
-                              : Icons.play_arrow,
                         ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Factorials represent the number of ways to arrange a set of items, which is fundamental in combinatorial problems.',
+                          style: TextStyle(fontSize: 20.0, color: Colors.black),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'For example, the number of ways to arrange n items is n!, and the number of ways to choose r items from a set of n is nCr = n! / (r!(n-r)!).',
+                          style: TextStyle(fontSize: 20.0, color: Colors.black),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'This mathematical foundation allows us to solve complex problems in probability, statistics, and beyond.',
+                          style: TextStyle(fontSize: 20.0, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  AspectRatio(
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: VideoPlayer(_controller),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0, bottom: 20.0),
+                    child: Text(
+                      'Video by Yannay Khaikin via TED-Ed',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.grey[700],
                       ),
                     ),
-                  ],
-                ),
-                Positioned(
-                  bottom: 20,
-                  right: 20,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Navigate to the next screen
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PermutationsPage()),
-                      );
-                    },
-                    child: const Text('Next'),
                   ),
-                ),
-              ],
+                  FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        if (_controller.value.isPlaying) {
+                          _controller.pause();
+                        } else {
+                          _controller.play();
+                        }
+                      });
+                    },
+                    child: Icon(
+                      _controller.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+              ),
             );
           } else {
             return const Center(child: CircularProgressIndicator());

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'comb_game_page.dart'; // Import the game page
 
 class CombinationsPage extends StatelessWidget {
   @override
@@ -8,7 +7,14 @@ class CombinationsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Combinations'),
       ),
-      body: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                "assets/images/image.jpg"), // Ensure you have this image in your assets
+            fit: BoxFit.cover,
+          ),
+        ),
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,59 +35,56 @@ class CombinationsPage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
             SizedBox(height: 20),
             Text(
               'Combinations refer to the selection of items from a larger set where the order of the items does not matter.',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             SizedBox(height: 20),
             Text(
               'Formula:',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
             SizedBox(height: 10),
             Text(
               'The number of ways to choose r items from a set of n is given by:\n'
               'C(n, r) = n! / (r!(n-r)!)',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             SizedBox(height: 20),
             Text(
               'Example:',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
             SizedBox(height: 10),
             Text(
               'Consider a set of numbers: [1, 2, 3, 4, 5]. If we want to choose 3 numbers from this set, the possible combinations would be:\n'
               '[1, 2, 3], [1, 2, 4], [1, 2, 5], [1, 3, 4], [1, 3, 5], [1, 4, 5], [2, 3, 4], [2, 3, 5], [2, 4, 5], [3, 4, 5]',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             SizedBox(height: 20),
             Text(
               'Combinations vs Permutations:',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black),
             ),
             SizedBox(height: 10),
             Text(
               'In permutations, the order of items matters, while in combinations it does not. For example, in permutations, [1, 2, 3] and [3, 2, 1] are considered different, but in combinations, they are the same.',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.black),
             ),
-            SizedBox(height: 30),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CombinationsGamePage()),
-                  );
-                },
-                child: Text("Next"),
-              ),
-            ),
+            SizedBox(height: 20),
           ],
         ),
       ),
