@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'playground_comb.dart'; // Import the CombinationGamePage
+import 'playground_perm.dart';
 
 class Playground extends StatelessWidget {
   const Playground({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class Playground extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (_) => Scaffold(appBar: AppBar(), body: Container())),
+                    MaterialPageRoute(builder: (_) => PermutationGamePage()), // Navigate to PermutationGamePage
                   );
                 },
                 child: Padding(

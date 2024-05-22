@@ -17,6 +17,7 @@ class _CombinationGamePageState extends State<CombinationGamePage> {
   int basketSize = 3;
   List<List<Color>> validCombinations = [];
   List<Widget> feedbackWidgets = [];
+  bool showCombinations = false;
 
   void _generateFeedback() {
     setState(() {
@@ -54,7 +55,17 @@ class _CombinationGamePageState extends State<CombinationGamePage> {
             ),
           );
         }
+        feedbackWidgets.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: Text(
+              'Total combinations: ${validCombinations.length}',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        );
       }
+      showCombinations = true;
     });
   }
 
@@ -75,6 +86,7 @@ class _CombinationGamePageState extends State<CombinationGamePage> {
     setState(() {
       validCombinations.clear();
       feedbackWidgets.clear();
+      showCombinations = false;
     });
   }
 
@@ -92,7 +104,7 @@ class _CombinationGamePageState extends State<CombinationGamePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Out of the 5 colors, what are all the possible combinations for selecting $basketSize colors to fill the basket.',
+                  'Out of the 5 colors, what are all the possible combinations for selecting $basketSize colors.',
                   style: TextStyle(fontSize: 24),
                   textAlign: TextAlign.center,
                 ),
@@ -117,6 +129,18 @@ class _CombinationGamePageState extends State<CombinationGamePage> {
                   ),
                 ),
                 SizedBox(height: 20),
+                Text(
+                  'In this question, you need to find all possible combinations of selecting $basketSize colors out of 5.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'Try to solve the problem yourself before checking the answer.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _generateFeedback,
                   child: Padding(
@@ -128,9 +152,7 @@ class _CombinationGamePageState extends State<CombinationGamePage> {
                   ),
                 ),
                 SizedBox(height: 20),
-                Column(
-                  children: feedbackWidgets,
-                ),
+                if (showCombinations) ...feedbackWidgets,
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _resetGame,
