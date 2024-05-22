@@ -31,7 +31,7 @@ class TheoreticalPage extends StatelessWidget {
                 "Permutations & Combinations: The Art of Mixing Things Up!",
                 textAlign: TextAlign.center, // Ensures the text is centered
                 style: TextStyle(
-                  fontSize: 45,
+                  fontSize: 40,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                   shadows: [

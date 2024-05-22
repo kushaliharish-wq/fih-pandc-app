@@ -41,52 +41,68 @@ class _PermutationsPageState extends State<PermutationsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Permutations'),
-        backgroundColor: Colors.blue,
+        title: const Text('What are permutations?'),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(
-                "assets/images/image.jpg"), // Ensure you have this image in your assets
-            fit: BoxFit.cover,
-          ),
-        ),
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(height: 20),
-            Image.asset('assets/images/permutations.png'),
-            SizedBox(height: 20),
-            Text(
-              'Permutations refer to the arrangement of items in all possible sequences. The number of permutations of n objects is n! (n factorial). Order matters in permutation!',
-              style: TextStyle(fontSize: 16, color: Colors.black),
-            ),
-            SizedBox(height: 20),
-            Text(
-              'Example permutations of [1, 2, 3]:',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+      body: FutureBuilder(
+        future: Future.delayed(Duration(seconds: 1)), // Simulating a future initialization
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Understanding permutations is crucial for arranging items in sequences.',
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            shadows: [
+                              Shadow(
+                                blurRadius: 1.0,
+                                color: Colors.black,
+                                offset: const Offset(1.0, 1.0),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Permutations refer to the arrangement of items in all possible sequences. The number of permutations of n objects is n! (n factorial). Order matters in permutation!',
+                          style: TextStyle(fontSize: 20.0, color: Colors.black),
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Example permutations of [1, 2, 3]:',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 8),
+                        for (var perm in permutations)
+                          Text(
+                            perm.toString(),
+                            style: TextStyle(fontSize: 20.0, color: Colors.black),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Center(
+                    child: Image.asset('assets/images/permutations.png'),
+                  ),
+                  const SizedBox(height: 20),
+                ],
               ),
-            ),
-            SizedBox(height: 10),
-            Expanded(
-              child: ListView.builder(
-                itemCount: permutations.length,
-                itemBuilder: (context, index) {
-                  return Text(
-                    permutations[index].toString(),
-                    style: TextStyle(color: Colors.black),
-                  );
-                },
-              ),
-            ),
-            SizedBox(height: 20),
-          ],
-        ),
+            );
+          } else {
+            return const Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
